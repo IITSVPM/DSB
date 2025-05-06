@@ -9,11 +9,13 @@ localhost: starting datanode, logging to /usr/local/hadoop/logs/hadoop-svpmit23-
 Starting secondary namenodes [0.0.0.0] svpmit23@0.0.0.0's password:
 0.0.0.0: starting secondarynamenode, logging to /usr/local/hadoop/logs/hadoop-svpmit23- secondarynamenode-svpmit23-HP-EliteDesk-800-G2-SFF.out
 25/04/23 11:05:38 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:~$ start-yarn.sh starting yarn daemons
+svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:~$ start-yarn.sh 
+starting yarn daemons
 starting resourcemanager, logging to /usr/local/hadoop/logs/yarn-svpmit23-resourcemanager- svpmit23-HP-EliteDesk-800-G2-SFF.out
 svpmit23@localhost's password:
 localhost: starting nodemanager, logging to /usr/local/hadoop/logs/yarn-svpmit23-nodemanager- svpmit23-HP-EliteDesk-800-G2-SFF.out
-svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:~$ jps 2257 NameNode
+svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:~$ jps 
+2257 NameNode
 3666 Jps
 2930 SecondaryNameNode
 2667 DataNode
@@ -23,64 +25,77 @@ svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:~$ hive
 25/04/23 11:06:08 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 
 Logging initialized using configuration in jar:file:/usr/lib/hive/lib/hive-common-1.2.1.jar!/hive- log4j.properties
-hive> show databases; OK
+hive> show databases; 
+OK
 default demo dsbda
-Time taken: 0.711 seconds, Fetched: 3 row(s) hive> create database flightinfo;
+Time taken: 0.711 seconds, Fetched: 3 row(s) 
+hive> create database flightinfo;
 OK
 Time taken: 0.205 seconds
-hive> drop database if exists flightinfo; OK
-Time taken: 0.226 seconds hive> show databases; OK
+hive> drop database if exists flightinfo; 
+OK
+Time taken: 0.226 seconds 
+hive> show databases; 
+OK
 default demo
  
 dsbda
-Time taken: 0.028 seconds, Fetched: 3 row(s) hive> create database flightinfo;
+Time taken: 0.028 seconds, Fetched: 3 row(s) 
+hive> create database flightinfo;
 OK
-Time taken: 0.057 seconds hive> use flightinfo;
+Time taken: 0.057 seconds 
+hive> use flightinfo;
 OK
 Time taken: 0.024 seconds
 hive> create table if not exists employee(empid smallint, ename string, address string,dob date) row format delimited
 >	 fields terminated by ','
 >	 lines terminated by '\n'
->	stored as textfile; OK
+>	stored as textfile; 
+OK
 Time taken: 0.257 seconds
-hive> describe flightinfo.employee; OK
+hive> describe flightinfo.employee; 
+OK
 empid	smallint
 ename	string
 address	string
 dob	date
 Time taken: 0.195 seconds, Fetched: 4 row(s)
-hive> alter table flightinfo.employee rename to flightinfo.employee_details; OK
+hive> alter table flightinfo.employee rename to flightinfo.employee_details; 
+OK
 Time taken: 0.123 seconds
-hive> alter table flightinfo.employee_details rename to flightinfo.employee; OK
+hive> alter table flightinfo.employee_details rename to flightinfo.employee; 
+OK
 Time taken: 0.078 seconds
-hive> alter table flightinfo.employee add columns(salary int); OK
+hive> alter table flightinfo.employee add columns(salary int); 
+OK
 Time taken: 0.078 seconds
-hive> alter table flightinfo.employee change ename emp_name string; OK
+hive> alter table flightinfo.employee change ename emp_name string; 
+OK
 Time taken: 0.08 seconds
 hive> alter table flightinfo.employee replace columns(empid smallint, emp_name string,address string);
 OK
 Time taken: 0.062 seconds
-hive> describe flightinfo.employee; OK
+hive> describe flightinfo.employee; 
+OK
 empid	smallint
 emp_name	string
 address	string
-Time taken: 0.066 seconds, Fetched: 3 row(s) hive> drop table flightinfo.employee;
+Time taken: 0.066 seconds, Fetched: 3 row(s) 
+hive> drop table flightinfo.employee;
 OK
 Time taken: 0.314 seconds
 Exception raised from Shell command Failed to execute q
 hive> exit;
 
 “ (create student.csv file manually on id int,fname string,lname string,year string, major string ) “
-svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:~$ cd /usr/local/hadoop/bin svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:/usr/local/hadoop/bin$ hdfs dfs -mkdir
-/hivedirectory;
+svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:~$ cd /usr/local/hadoop/bin 
+svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:/usr/local/hadoop/bin$ hdfs dfs -mkdir /hivedirectory;
  
 25/04/23 11:19:47 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 mkdir: `/hivedirectory': File exists
-svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:/usr/local/hadoop/bin$ hdfs dfs -put
-/home/svpmit23/Desktop/student.csv /hivedirectory;
+svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:/usr/local/hadoop/bin$ hdfs dfs -put /home/svpmit23/Desktop/student.csv /hivedirectory;
 25/04/23 11:22:04 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-put: `/home/svpmit23/Desktop/student.csv': No such file or directory svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:/usr/local/hadoop/bin$ hdfs dfs -put
-/home/svpmit23/Desktop/student.csv /hivedirectory;
+put: `/home/svpmit23/Desktop/student.csv': No such file or directory svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:/usr/local/hadoop/bin$ hdfs dfs -put /home/svpmit23/Desktop/student.csv /hivedirectory;
 25/04/23 11:25:19 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 put: `/hivedirectory/student.csv': File exists
 svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:/usr/local/hadoop/bin$ hive
@@ -90,9 +105,14 @@ Logging initialized using configuration in jar:file:/usr/lib/hive/lib/hive-commo
 hive> create external table studentlist(id int,fname string,lname string,year string, major string)
 >	 row format delimited
 >	 fields terminated by ','
->	location '/hivedirectory'; OK
-Time taken: 0.789 seconds hive> select * from studentlist; OK
-NULL id	salary NULL NULL NULL 101	25000 NULL NULL
+>	location '/hivedirectory'; 
+OK
+Time taken: 0.789 seconds 
+hive> select * from studentlist; 
+OK
+NULL id	salary NULL NULL 
+NULL 101	25000 
+NULL NULL
 NULL 102	30000 NULL NULL
 NULL 103	40000 NULL NULL
 Time taken: 0.493 seconds, Fetched: 4 row(s)
@@ -101,17 +121,22 @@ hive> create table student22(id int,fname string,lname string,year string, major
 >	row format delimited
 >	 fields terminated by ','
 >	 lines terminated by '\n'
->	stored as textfile; OK
+>	stored as textfile; 
+OK
 Time taken: 0.054 seconds
 hive> INSERT OVERWRITE TABLE student22 SELECT * FROM studentlist;
-Total MapReduce CPU Time Spent: 1 seconds 290 msec OK
-Time taken: 13.363 seconds hive> select * from student22; OK
+Total MapReduce CPU Time Spent: 1 seconds 290 msec 
+OK
+Time taken: 13.363 seconds 
+hive> select * from student22; 
+OK
 NULL id	salary NULL NULL NULL 101	25000 NULL NULL
 NULL 102	30000 NULL NULL
 NULL 103	40000 NULL NULL
 Time taken: 0.069 seconds, Fetched: 4 row(s)
  
-hive> drop table studentlist; OK
+hive> drop table studentlist; 
+OK
 Time taken: 0.293 seconds
 
 
@@ -152,35 +177,43 @@ hive> CREATE TABLE IF NOT EXISTS flightInfo2015
 >	ROW FORMAT DELIMITED
 >	fields terminated by ','
 >	lines terminated by '\n'
->	stored as textfile; OK
+>	stored as textfile; 
+OK
 Time taken: 0.065 seconds
 hive> create table if not exists airline(iata_code string, airline string)
 >	ROW FORMAT DELIMITED
 >	fields terminated by ','
 >	lines terminated by '\n'
->	stored as textfile; OK
+>	stored as textfile; 
+OK
 Time taken: 0.014 seconds
  
 hive> create table if not exists airport(iata_code string, airport string, city string, state string, country string, lattitude string, longitude string) ROW FORMAT DELIMITED
 >	fields terminated by ','
 >	lines terminated by '\n'
->	stored as textfile; OK
+>	stored as textfile; 
+OK
 Time taken: 0.012 seconds
 
 hive> load data local inpath '/home/svpmit23/Downloads/flights.csv' into table FlightInfo2015; Loading data to table default.flightinfo2015
-Table default.flightinfo2015 stats: [numFiles=1, totalSize=592406591] OK
+Table default.flightinfo2015 stats: [numFiles=1, totalSize=592406591] 
+OK
 Time taken: 14.012 seconds
 hive> load data local inpath '/home/svpmit23/Downloads/airlines.csv' into table airline; Loading data to table default.airline
-Table default.airline stats: [numFiles=2, totalSize=718] OK
+Table default.airline stats: [numFiles=2, totalSize=718] 
+OK
 Time taken: 0.512 seconds
 hive> load data local inpath '/home/svpmit23/Downloads/airports.csv' into table airport; Loading data to table default.airport
-Table default.airport stats: [numFiles=2, totalSize=47734] OK
+Table default.airport stats: [numFiles=2, totalSize=47734] 
+OK
 Time taken: 0.52 seconds
-hive> create table flight988 as select * from flightinfo2015 where flight_number=98; OK
+hive> create table flight988 as select * from flightinfo2015 where flight_number=98; 
+OK
 Time taken: 35.396 seconds
 hive> select year,month,day,day_of_week,f.airline,flight_number,origin_airport,destination_airport, a.airline from flight988 f join airline a on f.airline=a.iata_code;
 SUCCESS
-Total MapReduce CPU Time Spent: 1 seconds 950 msec OK
+Total MapReduce CPU Time Spent: 1 seconds 950 msec 
+OK
 2015	1	1	4	AS	98	ANC	SEA	Alaska Airlines Inc.
 2015	1	1	4	AS	98	ANC	SEA	Alaska Airlines Inc.
 2015	1	1	4	B6	98	DEN	JFK	JetBlue Airways
@@ -212,7 +245,8 @@ Total MapReduce CPU Time Spent: 1 seconds 950 msec OK
 Time taken: 12.684 seconds, Fetched: 2266 row(s)
 hive> select year,month,day,day_of_week,f.airline,flight_number,origin_airport,destination_airport, a.airline from flight988 f right join airline a on f.airline=a.iata_code where flight_number is NULL;
 
-Total MapReduce CPU Time Spent: 2 seconds 30 msec OK
+Total MapReduce CPU Time Spent: 2 seconds 30 msec 
+OK
 NULL NULL NULL NULL NULL NULL NULL NULL AIRLINE
 NULL NULL NULL NULL NULL NULL NULL NULL United Air Lines Inc. NULL NULL NULL NULL NULL NULL NULL NULL US Airways Inc.
 NULL NULL NULL NULL NULL NULL NULL NULL Frontier Airlines Inc. NULL NULL NULL NULL NULL NULL NULL NULL Skywest Airlines Inc. NULL NULL NULL NULL NULL NULL NULL NULL Spirit Air Lines
@@ -303,4 +337,125 @@ OK
 7	9.402855627605891
 2	9.164522265904088
 5	9.429767977851792
-Time taken: 20.991 seconds, Fetched: 7 row(s) hive>
+Time taken: 20.991 seconds, Fetched: 7 row(s) 
+hive>
+
+
+
+
+
+HADOOP & HIVE SETUP COMMANDS
+start-dfs.sh
+Purpose: Starts Hadoop's HDFS (Hadoop Distributed File System) services: NameNode and DataNode.
+
+Use case: Run this first when starting the Hadoop cluster.
+
+start-yarn.sh
+Purpose: Starts YARN (Yet Another Resource Negotiator) services: ResourceManager and NodeManager.
+
+Use case: Used for managing cluster resources and job scheduling.
+
+jps
+Purpose: Java process status tool.
+
+Use case: Verifies whether Hadoop daemons (NameNode, DataNode, ResourceManager, etc.) are running.
+
+HIVE INTERFACE
+hive
+Purpose: Opens the Hive shell (CLI).
+
+Use case: Allows execution of HiveQL (SQL-like) queries on Hadoop data.
+
+DATABASE COMMANDS
+show databases;
+Purpose: Lists all databases in Hive.
+
+create database flightinfo;
+Purpose: Creates a new Hive database named flightinfo.
+
+drop database if exists flightinfo;
+Purpose: Deletes the flightinfo database if it exists, to avoid errors.
+
+TABLE COMMANDS
+create table if not exists employee(...)
+Purpose: Creates a new table named employee with specified columns.
+
+Options used:
+
+ROW FORMAT DELIMITED → defines the format.
+
+FIELDS TERMINATED BY ',' → CSV-style field separation.
+
+LINES TERMINATED BY '\n' → one row per line.
+
+STORED AS TEXTFILE → uses plain text files for storage.
+
+alter table flightinfo.employee rename to flightinfo.employee_details;
+Purpose: Renames the table inside flightinfo database.
+
+alter table flightinfo.employee replace columns(...)
+Purpose: Modifies the schema of the employee table.
+
+HDFS & LOCAL FILES
+cd /usr/local/hadoop/bin
+Purpose: Navigates to Hadoop installation directory.
+
+hdfs dfs -mkdir /hivedirectory
+Purpose: Creates a new directory in HDFS.
+
+hdfs dfs -put /home/.../student.csv /hivedirectory
+Purpose: Uploads student.csv from local system to HDFS.
+
+EXTERNAL TABLE VS MANAGED TABLE
+create external table studentlist(...) location '/hivedirectory';
+Purpose: Creates a Hive table without moving the data.
+
+Key point: The data remains external (in HDFS); dropping the table doesn't delete the data.
+
+create table student22(...)
+Purpose: Creates a managed table (Hive owns the data).
+
+INSERT OVERWRITE TABLE student22 SELECT * FROM studentlist;
+Purpose: Copies all rows from studentlist into student22.
+
+FLIGHT DATA TABLES
+create table if not exists flightInfo2015(...)
+Purpose: Defines the schema of a large dataset (flight data).
+
+Stored as: CSV-style textfile.
+
+create table if not exists airline(...), airport(...)
+Purpose: Create lookup/reference tables for airline and airport codes.
+
+LOADING DATA
+load data local inpath '/.../flights.csv' into table flightinfo2015;
+Purpose: Loads local CSV file into Hive's managed table.
+
+QUERIES AND JOINS
+create table flight988 as select * from flightinfo2015 where flight_number=98;
+Purpose: Creates a table with only flight number 98 records.
+
+select ... from flight988 f join airline a on f.airline=a.iata_code;
+Purpose: Inner join to get full airline names from codes.
+
+right join / full outer join
+Purpose: Explore unmatched rows from airline table (e.g., no flights for some airlines).
+
+INDEXING IN HIVE
+CREATE INDEX f08_index ON TABLE flightinfo2015 (Origin_airport)...;
+Purpose: Create an index to improve query performance on the origin_airport column.
+
+ALTER INDEX f08_index ON flightinfo2015 REBUILD;
+Purpose: Builds the actual index data.
+
+SHOW INDEXES ON FlightInfo2015;
+Purpose: Lists available indexes on the table.
+
+GROUPING AND AGGREGATION
+select day_of_week, AVG(DEPARTURE_DELAY)... group by day_of_week;
+Purpose: Calculates average departure delay for each weekday.
+
+HAVING AVG(DEPARTURE_DELAY) > 5
+Purpose: Filters out groups with average delays less than or equal to 5.
+
+

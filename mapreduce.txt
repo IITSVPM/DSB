@@ -127,31 +127,6 @@ hduser@svpmit31-HP-EliteDesk-800-G2-SFF:~/analyze0$ hadoop jar analyze0.jar /inp
 		Total vcore-milliseconds taken by all map tasks=4486
 		Total vcore-milliseconds taken by all reduce tasks=1596
 		Total megabyte-milliseconds taken by all map tasks=4593664
-		Total megabyte-milliseconds taken by all reduce tasks=1634304
-	Map-Reduce Framework
-		Map input records=1294
-		Map output records=1294
-		Map output bytes=24177
-		Map output materialized bytes=26777
-		Input split bytes=216
-		Combine input records=0
-		Combine output records=0
-		Reduce input groups=227
-		Reduce shuffle bytes=26777
-		Reduce input records=1294
-		Reduce output records=227
-		Spilled Records=2588
-		Shuffled Maps =2
-		Failed Shuffles=0
-		Merged Map outputs=2
-		GC time elapsed (ms)=299
-		CPU time spent (ms)=1250
-		Physical memory (bytes) snapshot=790298624
-		Virtual memory (bytes) snapshot=5791522816
-		Total committed heap usage (bytes)=520093696
-	Shuffle Errors
-		BAD_ID=0
-		CONNECTION=0
 		IO_ERROR=0
 		WRONG_LENGTH=0
 		WRONG_MAP=0
@@ -227,24 +202,6 @@ hduser@svpmit31-HP-EliteDesk-800-G2-SFF:~/analyze0$ hdfs dfs -cat /output4000/pa
 10.155.95.124 	9
 10.156.152.9 	1
 10.157.176.158 	1
-10.164.130.155 	1
-10.164.49.105 	8
-10.164.95.122 	10
-10.165.106.173 	14
-10.167.1.145 	19
-10.169.158.88 	1
-10.170.178.53 	1
-10.171.104.4 	1
-10.172.169.53 	18
-10.174.246.84 	3
-10.175.149.65 	1
-10.175.204.125 	15
-10.177.216.164 	6
-10.179.107.170 	2
-10.181.38.207 	13
-10.181.87.221 	1
-10.185.152.140 	1
-10.186.56.126 	16
 10.186.56.183 	1
 10.187.129.140 	6
 10.187.177.220 	1
@@ -282,48 +239,6 @@ hduser@svpmit31-HP-EliteDesk-800-G2-SFF:~/analyze0$ hdfs dfs -cat /output4000/pa
 10.216.134.214 	1
 10.216.227.195 	16
 10.217.151.145 	10
-10.217.32.16 	1
-10.218.16.176 	8
-10.22.108.103 	4
-10.220.112.1 	34
-10.221.40.89 	5
-10.221.62.23 	13
-10.222.246.34 	1
-10.223.157.186 	10
-10.225.137.152 	1
-10.225.234.46 	1
-10.226.130.133 	1
-10.229.60.23 	1
-10.230.191.135 	6
-10.231.55.231 	1
-10.234.15.156 	1
-10.236.231.63 	1
-10.238.230.235 	1
-10.239.100.52 	1
-10.239.52.68 	4
-10.24.150.4 	5
-10.24.67.131 	13
-10.240.144.183 	15
-10.240.170.50 	1
-10.241.107.75 	1
-10.241.9.187 	1
-10.243.51.109 	5
-10.244.166.195 	5
-10.245.208.15 	20
-10.246.151.162 	3
-10.247.111.104 	9
-10.247.175.65 	1
-10.247.229.13 	1
-10.248.24.219 	1
-10.248.36.117 	3
-10.249.130.132 	3
-10.25.132.238 	2
-10.25.44.247 	6
-10.250.166.232 	1
-10.27.134.23 	1
-10.30.164.32 	1
-10.30.47.170 	8
-10.31.225.14 	7
 10.32.138.48 	11
 10.32.247.175 	4
 10.32.55.216 	12
@@ -345,41 +260,6 @@ hduser@svpmit31-HP-EliteDesk-800-G2-SFF:~/analyze0$ hdfs dfs -cat /output4000/pa
 10.50.226.223 	9
 10.50.41.216 	3
 10.52.161.126 	1
-10.53.58.58 	1
-10.54.242.54 	10
-10.54.49.229 	1
-10.56.48.40 	16
-10.59.42.194 	11
-10.6.238.124 	6
-10.61.147.24 	1
-10.61.161.218 	1
-10.61.23.77 	8
-10.61.232.147 	3
-10.62.78.165 	2
-10.63.233.249 	7
-10.64.224.191 	13
-10.66.208.82 	2
-10.69.20.85 	26
-10.70.105.238 	1
-10.70.238.46 	6
-10.72.137.86 	6
-10.72.208.27 	1
-10.73.134.9 	4
-10.73.238.200 	1
-10.73.60.200 	1
-10.73.64.91 	1
-10.74.218.123 	1
-10.75.116.199 	1
-10.76.143.30 	1
-10.76.68.178 	16
-10.78.95.24 	8
-10.80.10.131 	10
-10.80.215.116 	17
-10.81.134.180 	1
-10.82.30.199 	63
-10.82.64.235 	1
-10.84.236.242 	1
-10.87.209.46 	1
 10.87.88.214 	1
 10.88.204.177 	1
 10.89.178.62 	1
@@ -390,3 +270,79 @@ hduser@svpmit31-HP-EliteDesk-800-G2-SFF:~/analyze0$ hdfs dfs -cat /output4000/pa
 10.98.156.141 	1
 10.99.228.224 	1
 hduser@svpmit31-HP-EliteDesk-800-G2-SFF:~/analyze0$ 
+
+1. su - hduser
+Purpose: Switches to the Hadoop user account (hduser) and loads that user's environment.
+
+Why: Hadoop is usually run under a separate user (hduser) for security and organization.
+
+2. sudo mkdir analyze0
+Purpose: Creates a directory named analyze0 with superuser (root) privileges.
+
+Why: This folder will store the MapReduce Java code and related files.
+
+3. sudo cp /home/hduser/Downloads/analyze/* ~/analyze0
+Purpose: Copies all files from Downloads/analyze into the analyze0 directory.
+
+Why: You're setting up the working directory with source code files for compilation.
+
+4. start-dfs.sh
+Purpose: Starts Hadoop HDFS daemons (NameNode and DataNode).
+
+Why: Required for storing and retrieving data in Hadoop Distributed File System (HDFS).
+
+5. start-yarn.sh
+Purpose: Starts the YARN daemons (ResourceManager and NodeManager).
+
+Why: Required to manage cluster resources and schedule MapReduce jobs.
+
+6. sudo chmod -R 777 analyze0/
+Purpose: Gives full read, write, and execute permissions to everyone for the analyze0 directory.
+
+Why: Ensures you won’t run into permission errors while working with files in that folder.
+
+7. sudo chown -R hduser analyze0/
+Purpose: Changes the ownership of the analyze0 directory to the hduser.
+
+Why: Ensures the hduser can modify the files without needing sudo.
+
+8. sudo chmod +r *.*
+Purpose: Grants read permission to all files with extensions (e.g., .java, .txt).
+
+Why: Ensures files are readable before compilation or execution.
+
+9. Set Hadoop CLASSPATH for compilation
+export CLASSPATH="$HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.9.0.jar:$HADOOP_HOME/share/hadoop/mapreduce/hadoopmapreduce-client-common-2.9.0.jar:$HADOOP_HOME/share/hadoop/common/hadoop-common-2.9.0.jar:/home/hduser/analyze0/*:$HADOOP_HOME/lib/*"
+Purpose: Sets Java classpath to include necessary Hadoop and user-defined JARs.
+
+Why: Required for compiling MapReduce programs using Hadoop libraries.
+
+10. javac -d . log_mapper.java log_reducer.java log_analysis_main.java
+Purpose: Compiles the three Java files into class files.
+
+Why: Converts Java source code into bytecode that Hadoop can execute.
+
+11. jar -cfm analyze0.jar Manifest.txt loganalysis/*.class
+Purpose: Creates a JAR file named analyze0.jar using the manifest and compiled .class files.
+
+Why: Hadoop requires your job to be packaged as a .jar to run it on the cluster.
+
+12. sudo mkdir ~/input4000
+Purpose: Creates a new directory named input4000 in the current user's home directory.
+
+Why: This will contain the input data file (like log files) for your MapReduce job.
+
+13. sudo cp access_log_short_csv.csv ~/input4000/
+Purpose: Copies your CSV input file into the input4000 directory.
+
+Why: Prepares the input data for uploading into HDFS.
+
+14. hdfs dfs -put ~/input4000 /
+Purpose: Uploads input4000 directory from local FS to the root of HDFS.
+
+Why: Hadoop jobs can only read files from HDFS, not local file system.
+
+15. hdfs dfs -cat /output4000/part-00000
+Purpose: Displays the output of your MapReduce job stored in output4000 directory on HDFS.
+
+Why: Allows you to verify the job's result after execution.
