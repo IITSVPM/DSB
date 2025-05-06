@@ -1,0 +1,306 @@
+Create a file - student.csv in Desktop and name the rows as id, fname, lname, year, major. Give 2-3 manual input. Then follow the steps as it is. 
+
+svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:~$ start-dfs.sh
+25/04/23 11:04:58 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Starting namenodes on [localhost] svpmit23@localhost's password:
+localhost: starting namenode, logging to /usr/local/hadoop/logs/hadoop-svpmit23-namenode- svpmit23-HP-EliteDesk-800-G2-SFF.out
+svpmit23@localhost's password:
+localhost: starting datanode, logging to /usr/local/hadoop/logs/hadoop-svpmit23-datanode- svpmit23-HP-EliteDesk-800-G2-SFF.out
+Starting secondary namenodes [0.0.0.0] svpmit23@0.0.0.0's password:
+0.0.0.0: starting secondarynamenode, logging to /usr/local/hadoop/logs/hadoop-svpmit23- secondarynamenode-svpmit23-HP-EliteDesk-800-G2-SFF.out
+25/04/23 11:05:38 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:~$ start-yarn.sh starting yarn daemons
+starting resourcemanager, logging to /usr/local/hadoop/logs/yarn-svpmit23-resourcemanager- svpmit23-HP-EliteDesk-800-G2-SFF.out
+svpmit23@localhost's password:
+localhost: starting nodemanager, logging to /usr/local/hadoop/logs/yarn-svpmit23-nodemanager- svpmit23-HP-EliteDesk-800-G2-SFF.out
+svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:~$ jps 2257 NameNode
+3666 Jps
+2930 SecondaryNameNode
+2667 DataNode
+3532 NodeManager
+3196 ResourceManager
+svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:~$ hive
+25/04/23 11:06:08 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+
+Logging initialized using configuration in jar:file:/usr/lib/hive/lib/hive-common-1.2.1.jar!/hive- log4j.properties
+hive> show databases; OK
+default demo dsbda
+Time taken: 0.711 seconds, Fetched: 3 row(s) hive> create database flightinfo;
+OK
+Time taken: 0.205 seconds
+hive> drop database if exists flightinfo; OK
+Time taken: 0.226 seconds hive> show databases; OK
+default demo
+ 
+dsbda
+Time taken: 0.028 seconds, Fetched: 3 row(s) hive> create database flightinfo;
+OK
+Time taken: 0.057 seconds hive> use flightinfo;
+OK
+Time taken: 0.024 seconds
+hive> create table if not exists employee(empid smallint, ename string, address string,dob date) row format delimited
+>	 fields terminated by ','
+>	 lines terminated by '\n'
+>	stored as textfile; OK
+Time taken: 0.257 seconds
+hive> describe flightinfo.employee; OK
+empid	smallint
+ename	string
+address	string
+dob	date
+Time taken: 0.195 seconds, Fetched: 4 row(s)
+hive> alter table flightinfo.employee rename to flightinfo.employee_details; OK
+Time taken: 0.123 seconds
+hive> alter table flightinfo.employee_details rename to flightinfo.employee; OK
+Time taken: 0.078 seconds
+hive> alter table flightinfo.employee add columns(salary int); OK
+Time taken: 0.078 seconds
+hive> alter table flightinfo.employee change ename emp_name string; OK
+Time taken: 0.08 seconds
+hive> alter table flightinfo.employee replace columns(empid smallint, emp_name string,address string);
+OK
+Time taken: 0.062 seconds
+hive> describe flightinfo.employee; OK
+empid	smallint
+emp_name	string
+address	string
+Time taken: 0.066 seconds, Fetched: 3 row(s) hive> drop table flightinfo.employee;
+OK
+Time taken: 0.314 seconds
+Exception raised from Shell command Failed to execute q
+hive> exit;
+
+“ (create student.csv file manually on id int,fname string,lname string,year string, major string ) “
+svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:~$ cd /usr/local/hadoop/bin svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:/usr/local/hadoop/bin$ hdfs dfs -mkdir
+/hivedirectory;
+ 
+25/04/23 11:19:47 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+mkdir: `/hivedirectory': File exists
+svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:/usr/local/hadoop/bin$ hdfs dfs -put
+/home/svpmit23/Desktop/student.csv /hivedirectory;
+25/04/23 11:22:04 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+put: `/home/svpmit23/Desktop/student.csv': No such file or directory svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:/usr/local/hadoop/bin$ hdfs dfs -put
+/home/svpmit23/Desktop/student.csv /hivedirectory;
+25/04/23 11:25:19 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+put: `/hivedirectory/student.csv': File exists
+svpmit23@svpmit23-HP-EliteDesk-800-G2-SFF:/usr/local/hadoop/bin$ hive
+25/04/23 11:26:42 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+
+Logging initialized using configuration in jar:file:/usr/lib/hive/lib/hive-common-1.2.1.jar!/hive- log4j.properties
+hive> create external table studentlist(id int,fname string,lname string,year string, major string)
+>	 row format delimited
+>	 fields terminated by ','
+>	location '/hivedirectory'; OK
+Time taken: 0.789 seconds hive> select * from studentlist; OK
+NULL id	salary NULL NULL NULL 101	25000 NULL NULL
+NULL 102	30000 NULL NULL
+NULL 103	40000 NULL NULL
+Time taken: 0.493 seconds, Fetched: 4 row(s)
+
+hive> create table student22(id int,fname string,lname string,year string, major string)
+>	row format delimited
+>	 fields terminated by ','
+>	 lines terminated by '\n'
+>	stored as textfile; OK
+Time taken: 0.054 seconds
+hive> INSERT OVERWRITE TABLE student22 SELECT * FROM studentlist;
+Total MapReduce CPU Time Spent: 1 seconds 290 msec OK
+Time taken: 13.363 seconds hive> select * from student22; OK
+NULL id	salary NULL NULL NULL 101	25000 NULL NULL
+NULL 102	30000 NULL NULL
+NULL 103	40000 NULL NULL
+Time taken: 0.069 seconds, Fetched: 4 row(s)
+ 
+hive> drop table studentlist; OK
+Time taken: 0.293 seconds
+
+
+hive> CREATE TABLE IF NOT EXISTS flightInfo2015
+>	(
+>	YEAR SMALLINT,
+>	MONTH SMALLINT,
+>	DAY SMALLINT,
+>	DAY_OF_WEEK SMALLINT,
+>	AIRLINE STRING,
+>	FLIGHT_NUMBER TINYINT,
+>	TAIL_NUMBER STRING,
+>	ORIGIN_AIRPORT STRING,
+>	DESTINATION_AIRPORT STRING,
+>	SCHEDULED_DEPARTURE SMALLINT,
+>	DEPARTURE_TIME SMALLINT ,
+>	DEPARTURE_DELAY SMALLINT,
+>	TAXI_OUT TINYINT,
+>	WHEELS_OFF SMALLINT,
+>	SCHEDULED_TIME TINYINT,
+>	ELAPSED_TIME TINYINT,
+>	AIR_TIME TINYINT,
+>	DISTANCE TINYINT,
+>	WHEELS_ON SMALLINT,
+>	TAXI_IN SMALLINT,
+>	SCHEDULED_ARRIVAL SMALLINT,
+>	ARRIVAL_TIME SMALLINT,
+>	ARRIVAL_DELAY SMALLINT,
+>	DIVERTED SMALLINT,
+>	CANCELLED SMALLINT,
+>	CANCELLATION_REASON STRING,
+>	AIR_SYSTEM_DELAY SMALLINT,
+>	SECURITY_DELAY SMALLINT,
+>	AIRLINE_DELAY SMALLINT,
+>	LATE_AIRCRAFT_DELAY SMALLINT,
+>	WEATHER_DELAY SMALLINT
+>	)
+>	ROW FORMAT DELIMITED
+>	fields terminated by ','
+>	lines terminated by '\n'
+>	stored as textfile; OK
+Time taken: 0.065 seconds
+hive> create table if not exists airline(iata_code string, airline string)
+>	ROW FORMAT DELIMITED
+>	fields terminated by ','
+>	lines terminated by '\n'
+>	stored as textfile; OK
+Time taken: 0.014 seconds
+ 
+hive> create table if not exists airport(iata_code string, airport string, city string, state string, country string, lattitude string, longitude string) ROW FORMAT DELIMITED
+>	fields terminated by ','
+>	lines terminated by '\n'
+>	stored as textfile; OK
+Time taken: 0.012 seconds
+
+hive> load data local inpath '/home/svpmit23/Downloads/flights.csv' into table FlightInfo2015; Loading data to table default.flightinfo2015
+Table default.flightinfo2015 stats: [numFiles=1, totalSize=592406591] OK
+Time taken: 14.012 seconds
+hive> load data local inpath '/home/svpmit23/Downloads/airlines.csv' into table airline; Loading data to table default.airline
+Table default.airline stats: [numFiles=2, totalSize=718] OK
+Time taken: 0.512 seconds
+hive> load data local inpath '/home/svpmit23/Downloads/airports.csv' into table airport; Loading data to table default.airport
+Table default.airport stats: [numFiles=2, totalSize=47734] OK
+Time taken: 0.52 seconds
+hive> create table flight988 as select * from flightinfo2015 where flight_number=98; OK
+Time taken: 35.396 seconds
+hive> select year,month,day,day_of_week,f.airline,flight_number,origin_airport,destination_airport, a.airline from flight988 f join airline a on f.airline=a.iata_code;
+SUCCESS
+Total MapReduce CPU Time Spent: 1 seconds 950 msec OK
+2015	1	1	4	AS	98	ANC	SEA	Alaska Airlines Inc.
+2015	1	1	4	AS	98	ANC	SEA	Alaska Airlines Inc.
+2015	1	1	4	B6	98	DEN	JFK	JetBlue Airways
+2015	1	1	4	B6	98	DEN	JFK	JetBlue Airways
+2015	1	2	5	AS	98	ANC	SEA	Alaska Airlines Inc.
+2015	1	2	5	AS	98	ANC	SEA	Alaska Airlines Inc.
+2015	1	2	5	AA	98	SFO	ORD	American Airlines Inc.
+2015	1	2	5	AA	98	SFO	ORD	American Airlines Inc.
+2015	1	2	5	DL	98	DEN	DTW	Delta Air Lines Inc.
+2015	1	2	5	DL	98	DEN	DTW	Delta Air Lines Inc.
+2015	1	2	5	B6	98	DEN	JFK	JetBlue Airways
+2015	1	2	5	B6	98	DEN	JFK	JetBlue Airways
+2015	1	3	6	AA	98	SFO	ORD	American Airlines Inc.
+2015	1	3	6	AA	98	SFO	ORD	American Airlines Inc.
+2015	1	3	6	DL	98	DEN	DTW	Delta Air Lines Inc.
+2015	1	3	6	DL	98	DEN	DTW	Delta Air Lines Inc.
+2015	1	3	6	B6	98	DEN	JFK	JetBlue Airways
+2015	1	3	6	B6	98	DEN	JFK	JetBlue Airways
+2015	1	4	7	AS	98	ANC	SEA	Alaska Airlines Inc.
+ 
+
+2015	1	4	7	AS	98	ANC	SEA	Alaska Airlines Inc.
+2015	1	4	7	AA	98	SFO	ORD	American Airlines Inc.
+2015	1	4	7	AA	98	SFO	ORD	American Airlines Inc.
+2015	1	4	7	DL	98	DEN	DTW	Delta Air Lines Inc.
+2015	1	4	7	DL	98	DEN	DTW	Delta Air Lines Inc.
+2015	1	4	7	B6	98	DEN	JFK	JetBlue Airways
+2015	1	4	7	B6	98	DEN	JFK	JetBlue Airways
+Time taken: 12.684 seconds, Fetched: 2266 row(s)
+hive> select year,month,day,day_of_week,f.airline,flight_number,origin_airport,destination_airport, a.airline from flight988 f right join airline a on f.airline=a.iata_code where flight_number is NULL;
+
+Total MapReduce CPU Time Spent: 2 seconds 30 msec OK
+NULL NULL NULL NULL NULL NULL NULL NULL AIRLINE
+NULL NULL NULL NULL NULL NULL NULL NULL United Air Lines Inc. NULL NULL NULL NULL NULL NULL NULL NULL US Airways Inc.
+NULL NULL NULL NULL NULL NULL NULL NULL Frontier Airlines Inc. NULL NULL NULL NULL NULL NULL NULL NULL Skywest Airlines Inc. NULL NULL NULL NULL NULL NULL NULL NULL Spirit Air Lines
+NULL NULL NULL NULL NULL NULL NULL NULL Southwest Airlines Co. NULL NULL NULL NULL NULL NULL NULL NULL Atlantic Southeast Airlines NULL NULL NULL NULL NULL NULL NULL NULL Hawaiian Airlines Inc.
+NULL NULL NULL NULL NULL NULL NULL NULL American Eagle Airlines Inc. NULL NULL NULL NULL NULL NULL NULL NULL Virgin America
+NULL NULL NULL NULL NULL NULL NULL NULL AIRLINE
+NULL NULL NULL NULL NULL NULL NULL NULL United Air Lines Inc. NULL NULL NULL NULL NULL NULL NULL NULL US Airways Inc.
+NULL NULL NULL NULL NULL NULL NULL NULL Frontier Airlines Inc. NULL NULL NULL NULL NULL NULL NULL NULL Skywest Airlines Inc. NULL NULL NULL NULL NULL NULL NULL NULL Spirit Air Lines
+NULL NULL NULL NULL NULL NULL NULL NULL Southwest Airlines Co. NULL NULL NULL NULL NULL NULL NULL NULL Atlantic Southeast Airlines NULL NULL NULL NULL NULL NULL NULL NULL Hawaiian Airlines Inc.
+NULL NULL NULL NULL NULL NULL NULL NULL American Eagle Airlines Inc. NULL NULL NULL NULL NULL NULL NULL NULL Virgin America
+Time taken: 12.587 seconds, Fetched: 22 row(s)
+
+
+hive> select year,month,day,day_of_week,f.airline,flight_number,origin_airport,destination_airport, a.airline from flight988 f full outer join airline a on f.airline=a.iata_code;
+
+Total MapReduce CPU Time Spent: 4 seconds 930 msec OK
+2015	8	31	1	AA	98	DFW	PHX	American Airlines Inc.
+2015	8	31	1	AA	98	DFW	PHX	American Airlines Inc.
+2015	7	14	2	AA	98	LAS	DFW	American Airlines Inc.
+2015	7	14	2	AA	98	LAS	DFW	American Airlines Inc.
+2015	7	14	2	AA	98	DFW	PHX	American Airlines Inc.
+2015	7	14	2	AA	98	DFW	PHX	American Airlines Inc.
+2015	4	18	6	AA	98	DFW	MSY	American Airlines Inc.
+2015	4	18	6	AA	98	DFW	MSY	American Airlines Inc.
+2015	8	30	7	AA	98	DFW	PHX	American Airlines Inc.
+ 
+
+2015	8	30	7	AA	98	DFW	PHX	American Airlines Inc.
+2015	7	15	3	AA	98	LAS	DFW	American Airlines Inc.
+2015	7	15	3	AA	98	LAS	DFW	American Airlines Inc.
+2015	7	15	3	AA	98	DFW	PHX	American Airlines Inc.
+
+Time taken: 16.089 seconds, Fetched: 2288 row(s)
+hive> CREATE INDEX f08_index ON TABLE flightinfo2015 (Origin_airport) AS 'COMPACT' WITH DEFERRED REBUILD;
+OK
+Time taken: 0.098 seconds
+
+
+hive> ALTER INDEX f08_index ON flightinfo2015 REBUILD;
+
+Total MapReduce CPU Time Spent: 4 seconds 460 msec hive> SHOW INDEXES ON FlightInfo2015;
+OK
+f08_index	flightinfo2015	origin_airport default flightinfo2015_f08_index			compact
+Time taken: 0.042 seconds, Fetched: 1 row(s)
+hive> select day_of_week,AVG(DEPARTURE_DELAY) from flight988 group by day_of_week;
+
+OK	
+1	12.397660818713451
+2	5.21301775147929
+3	12.616438356164384
+4	9.527777777777779
+5	11.35
+6	10.728813559322035
+7	13.589887640449438
+Time taken: 15.013 seconds, Fetched: 7 row(s)
+hive> select day_of_week,AVG(DEPARTURE_DELAY) from flightinfo2015 group by day_of_week;
+OK
+NULL NULL
+3	8.645276690756555
+6	7.827415699173568
+1	10.871775063646947
+4	9.956913497060805
+7	9.402855627605891
+2	9.164522265904088
+5	9.429767977851792
+Time taken: 21.897 seconds, Fetched: 8 row(s)
+hive> SELECT day_of_week, AVG(DEPARTURE_DELAY) FROM flightinfo2015 WHERE flight_number = 98 GROUP BY day_of_week;
+OK
+3	12.616438356164384
+6	10.728813559322035
+1	12.397660818713451
+4	9.527777777777779
+ 
+
+7	13.589887640449438
+2	5.21301775147929
+5	11.35
+Time taken: 23.456 seconds, Fetched: 7 row(s)
+Time taken: 20.82 seconds
+
+hive> SELECT day_of_week, AVG(DEPARTURE_DELAY) AS avg_delay FROM flightinfo2015 GROUP BY day_of_week HAVING AVG(DEPARTURE_DELAY) > 5;
+
+OK	
+3	8.645276690756555
+6	7.827415699173568
+1	10.871775063646947
+4	9.956913497060805
+7	9.402855627605891
+2	9.164522265904088
+5	9.429767977851792
+Time taken: 20.991 seconds, Fetched: 7 row(s) hive>
